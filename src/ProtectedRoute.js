@@ -1,12 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Redirect, Route } from "react-router";
 
 const ProtectedRoute = (props) => {
-  const { isAuthedUser, type = "private" } = props;
+  const { isAuthedUser } = props; //, type = "private"
   // if (type === "guest" && isAuthedUser) return <Redirect to="/home" />;
   // else
   console.log(props);
-  if (type === "private" && !isAuthedUser) return <Redirect to="/login" />;
+  if (!isAuthedUser) return <Redirect to="/login" />; //type === "private" &&
 
   return <Route {...props} />;
 };
