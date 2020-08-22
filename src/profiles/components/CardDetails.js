@@ -3,8 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   CardContent,
   Typography,
-  FormHelperText,
-  capitalize,
+  // FormHelperText,
+  // capitalize,
 } from "@material-ui/core";
 import { AuthContext } from "../../shared/context/AuthContext";
 

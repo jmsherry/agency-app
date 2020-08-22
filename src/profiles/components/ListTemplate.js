@@ -1,5 +1,5 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useParams } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   GridList,
@@ -7,6 +7,7 @@ import {
   GridListTileBar,
   useMediaQuery,
 } from "@material-ui/core";
+import { AuthContext } from "../../shared/context/AuthContext";
 
 const useStyles = makeStyles((theme) => ({
   base: {
@@ -34,14 +35,18 @@ const ListTemplate = ({ profiles = [] }) => {
   const classes = useStyles();
   const small = useMediaQuery((theme) => theme.breakpoints.down("xs"));
   const widescreen = useMediaQuery((theme) => theme.breakpoints.up("md"));
+  const { userId } = useContext(AuthContext);
+
+  const { id } = useParams();
   if (!profiles.length) {
     return (
       <div>
-        <h2> No profiles found. Create one?</h2>
-
-        <Link to="/profiles/new">
-          <button>Create Profile</button>
-        </Link>
+        <h2> No profiles found.</h2>
+        {userId === id && (
+          <Link to="/profiles/new">
+            <button>Create Profile</button>
+          </Link>
+        )}
       </div>
     );
   }
